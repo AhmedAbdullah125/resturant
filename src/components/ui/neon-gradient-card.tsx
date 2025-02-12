@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-import { cn } from "@/lib/utils";
+../../lib/utils;
 
 interface NeonColorsProps {
   firstColor: string;
