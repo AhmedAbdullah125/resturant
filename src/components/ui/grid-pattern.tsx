@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-../../lib/utils;
+import { cn } from "@/lib/utils";
 
 interface GridPatternProps {
   width?: number;

@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 
-../../lib/utils;
+import { cn } from "@/lib/utils";
 
 interface WordFadeInProps {
   words: string;
