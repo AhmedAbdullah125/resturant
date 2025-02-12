@@ -82,7 +82,7 @@ export default function Menue() {
                                 spaceBetween: 16
                             },
                             100: {
-                                slidesPerView: 1,
+                                slidesPerView: 2,
                                 autoplay: false,
                                 spaceBetween: 16
                             }
@@ -90,9 +90,29 @@ export default function Menue() {
                     >
                         {
                             imgs.map((item, index) => (
-                                index % 2 == 0 ?
+                                index % 2 !== 0 ?
                                     <SwiperSlide key={index}>
                                         <div className="two-meals">
+                                            <div className="meal">
+                                                <div className="img-cont">
+                                                    <Image src={imgs[index - 1]?.url} alt="Mazar" width={200} height={200} />
+                                                </div>
+                                                <div className="text">
+                                                    <h4>{imgs[index - 1]?.name}</h4>
+                                                    <div className="rate">
+
+                                                        {
+                                                            Array(5).fill(0).map((raye, index) =>
+                                                                <i className={`fa-solid fa-star ${imgs[index - 1]?.rate > index ? 'active' : ''} `} key={index}></i>
+                                                            )
+                                                        }
+                                                    </div>
+                                                    <div className="price-addtocart">
+                                                        <h5>{imgs[index - 1]?.price}</h5>
+                                                        <i className="fa-solid fa-cart-shopping"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className="meal">
                                                 <div className="img-cont">
                                                     <Image src={item.url} alt="Mazar" width={200} height={200} />
@@ -113,26 +133,7 @@ export default function Menue() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="meal">
-                                                <div className="img-cont">
-                                                    <Image src={imgs[index+1].url} alt="Mazar" width={200} height={200} />
-                                                </div>
-                                                <div className="text">
-                                                    <h4>{imgs[index+1].name}</h4>
-                                                    <div className="rate">
 
-                                                        {
-                                                            Array(5).fill(0).map((raye, index) =>
-                                                                <i className={`fa-solid fa-star ${imgs[index+1].rate > index ? 'active' : ''} `} key={index}></i>
-                                                            )
-                                                        }
-                                                    </div>
-                                                    <div className="price-addtocart">
-                                                        <h5>{imgs[index+1].price}</h5>
-                                                        <i className="fa-solid fa-cart-shopping"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                         </div>
                                     </SwiperSlide>

@@ -26,6 +26,7 @@ export default function Gallery() {
     return (
         <div className="gallery" id='gallery'>
             <div className="container mx-auto">
+                <h2 className="Sec-title">Our Offers</h2>
                 <section id="photos">
                     <div className="columns-1 sm:columns-2 gap-4 md:columns-4">
                         {imgs.map((img, idx) => (
