@@ -7,6 +7,8 @@ import img2 from '/public/grid2.png';
 import img3 from '/public/grid3.png';
 import img4 from '/public/grid4.png';
 import img5 from '/public/grid5.png';
+import img6 from '/public/grid6.png';
+
 import Link from 'next/link';
 
 export default function Gallery() {
@@ -17,13 +19,15 @@ export default function Gallery() {
             { url: img2, category: 'photos', name: "burger" },
             { url: img1, category: 'photos', name: "burger" },
             { url: img4, category: 'photos', name: "burger" },
+            { url: img5, category: 'photos', name: "burger" },
+            { url: img6, category: 'photos', name: "burger" },
 
         ]
     return (
         <div className="gallery" id='gallery'>
             <div className="container mx-auto">
                 <section id="photos">
-                    <div className="columns-1 sm:columns-2 gap-4 md:columns-3">
+                    <div className="columns-1 sm:columns-2 gap-4 md:columns-4">
                         {imgs.map((img, idx) => (
                             <BlurFade key={idx} delay={0.25 + idx * 0.05} inView>
                                 <figure className='relative'>
