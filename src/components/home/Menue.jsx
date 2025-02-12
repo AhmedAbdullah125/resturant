@@ -28,6 +28,7 @@ export default function Menue() {
             { url: img2, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
             { url: img1, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
             { url: img4, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
+            { url: img5, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
             { url: img4, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
             { url: img6, rate: 4, price: "12$", category: 'Vegetables', name: "burger" },
             { url: img7, rate: 4, price: "12$", category: 'Meals', name: "burger" },
@@ -35,6 +36,7 @@ export default function Menue() {
             { url: img9, rate: 4, price: "12$", category: 'Meals', name: "burger" },
             { url: img10, rate: 4, price: "12$", category: 'Sandwiches', name: "burger" },
             { url: img11, rate: 4, price: "12$", category: 'Sandwiches', name: "burger" },
+
         ];
     let tabs = [
         { id: 1, name: "Vegetables", className: "fa-solid fa-leaf" },
