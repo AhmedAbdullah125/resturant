@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Foodi",
       images: [
         {
-          url: logo.src,
+          url: "https://resturant-five-sandy.vercel.app/_next/static/media/logo.884c1d19.svg",
           width: 1200,
           height: 630,
           alt: 'Foodi',
