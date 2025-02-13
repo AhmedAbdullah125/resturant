@@ -5,13 +5,33 @@ import Header from '../components/header/Header';
 import Footer from '../components/home/Footer';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '../style/main.css';
+import logo from '../assets/images/home/logo.svg'
 import { Toaster } from "../components/ui/sonner"
 
 
-export const metadata: Metadata = {
-  title: 'Alalaa',
-  description: 'تأسست شركة الآلاء الوطنية التجارية في عام 1998م كمؤسسة فردية وتحولت لشركة ذات مسؤولية محدودة في عام 2016م، وتطورت منذ ذلك الحين لتصبح إحدى الشركات الرائدة في المملكة العربية السعودية، حيث تقدم خدمات متكاملة في مجالات النقل البري، إدارة وتشغيل محطات الوقود، المقاولات العامة، الأمن، والسلامة. تعمل الشركة وفق أعلى معايير الجودة والابتكار لتحقيق رؤيتها المتمثلة في دعم تطلعات عملائها والمساهمة في تحقيق أهداف رؤية المملكة 2030. ',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Foodi',
+    keywords:"Food , Foodi , Foodie , Foodies ,resturent",
+    description:"Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
+    openGraph: {
+      title: "Foodi",
+      description:"Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
+      url: 'https://resturant-five-sandy.vercel.app/',
+      siteName: "Foodi",
+      images: [
+        {
+          url: logo.src,
+          width: 1200,
+          height: 630,
+          alt: 'Foodi',
+        },
+      ],
+      type: 'website',
+      locale: 'en_US',
+    },
+  };
+}
 
 
 export default function RootLayout({

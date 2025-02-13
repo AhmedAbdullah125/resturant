@@ -39,10 +39,10 @@ export default function Menue() {
 
         ];
     let tabs = [
+        { id: 4, name: "All", className: "fa-solid fa-utensils" },
         { id: 1, name: "Vegetables", className: "fa-solid fa-leaf" },
         { id: 2, name: "Meals", className: "fa-solid fa-bowl-food" },
         { id: 3, name: "Sandwiches", className: "fa-solid fa-burger" },
-        { id: 4, name: "All", className: "fa-solid fa-utensils" }
     ]
     return (
         <div className="menue">

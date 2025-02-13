@@ -4,6 +4,8 @@ import Hero from '../components/home/Hero';
 import Gallery from '../components/home/Gallery'
 import Menue from '../components/home/Menue'
 import Offer from '../components/home/Offer'
+import Testmonials from '../components/home/Testmonials'
+import InstagramsImgs from '../components/home/InstagramsImgs'
 
 export default function Home() {
   
@@ -13,6 +15,8 @@ export default function Home() {
       <Menue />
       <Gallery />
       <Offer />
+      <InstagramsImgs />
+      <Testmonials />
     </main>
 
   );

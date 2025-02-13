@@ -51,10 +51,10 @@ export default function NavBar() {
             <i className="fa-solid fa-bookmark"></i>
             <p>Favourits</p>
           </Link>
-          <Link href={'/profile'} className="nav-card">
+          {/* <Link href={'/profile'} className="nav-card">
             <i className="fa-solid fa-user"></i>
             <p>Account</p>
-          </Link>
+          </Link> */}
           <div className="cart-balance">
             {/* {
               cartCont.length > 0 ? */}
