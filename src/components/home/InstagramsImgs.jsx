@@ -58,7 +58,7 @@ export default function InstagramsImgs() {
         <div className="instagrams">
             <div className="text-cont">
                 <i className="fa-brands fa-instagram"></i>
-                <h2>Follow @shawonetc3</h2>
+                <h2>Follow @Foodi</h2>
                 <h6>Join our community to inspire your desires</h6>
             </div>
             <div className="marq" style={{ direction: 'ltr' }}>
