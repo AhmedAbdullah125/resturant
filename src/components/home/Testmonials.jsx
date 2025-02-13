@@ -111,7 +111,7 @@ export default function Testmonials() {
                                         <div className="rates">
                                             {
                                                 Array.from({ length: 5 }, (_, index) => (
-                                                    <i className="active fa-solid fa-star" />
+                                                    <i className="active fa-solid fa-star"  key={index}/>
                                                 ))
                                             }
                                         </div>
@@ -127,7 +127,7 @@ export default function Testmonials() {
                                         <div className="rates">
                                             {
                                                 Array.from({ length: 5 }, (_, index) => (
-                                                    <i className="active fa-solid fa-star" />
+                                                    <i className="active fa-solid fa-star"  key={index}/>
                                                 ))
                                             }
                                         </div>
@@ -143,7 +143,7 @@ export default function Testmonials() {
                                         <div className="rates">
                                             {
                                                 Array.from({ length: 5 }, (_, index) => (
-                                                    <i className="active fa-solid fa-star" />
+                                                    <i className="active fa-solid fa-star" key={index}/>
                                                 ))
                                             }
                                         </div>
@@ -159,7 +159,7 @@ export default function Testmonials() {
                                         <div className="rates">
                                             {
                                                 Array.from({ length: 5 }, (_, index) => (
-                                                    <i className="active fa-solid fa-star" />
+                                                    <i className="active fa-solid fa-star" key={index}/>
                                                 ))
                                             }
                                         </div>
