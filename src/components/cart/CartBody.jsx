@@ -25,6 +25,8 @@ export default function CartBody() {
 
     }
     useEffect(() => {
+        //scroll to the top of the page
+        window.scrollTo(0, 0);
         setTax(totalPrice * .15);
     }, [totalPrice])
 

@@ -118,22 +118,22 @@ export default function Menue() {
                                 index % 2 !== 0 ?
                                     <SwiperSlide key={index}>
                                         <div className="two-meals">
-                                            <div className="meal">
+                                        <div className="meal">
                                                 <div className="img-cont">
-                                                    <Image src={imgs[index - 1]?.url} alt="Mazar" width={200} height={200} />
+                                                    <Image src={item.url} alt="Mazar" width={200} height={200} />
                                                 </div>
                                                 <div className="text">
-                                                    <h4>{imgs[index - 1]?.name}</h4>
+                                                    <h4>{item.name}</h4>
                                                     <div className="rate">
 
                                                         {
                                                             Array(5).fill(0).map((raye, index) =>
-                                                                <i className={`fa-solid fa-star ${imgs[index - 1]?.rate > index ? 'active' : ''} `} key={index}></i>
+                                                                <i className={`fa-solid fa-star ${item.rate > index ? 'active' : ''} `} key={index}></i>
                                                             )
                                                         }
                                                     </div>
                                                     <div className="price-addtocart">
-                                                        <h5>{imgs[index - 1]?.price} $</h5>
+                                                        <h5>{item.price}</h5>
                                                         <i className="fa-solid fa-cart-shopping"
                                                             onClick={() => {
                                                                 console.log(cartCont);

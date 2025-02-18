@@ -1,6 +1,9 @@
 .cart-page {
     min-height: calc(100vh - 511px);
-    margin-top: 200px;
+    margin-top: 150px;
+    @media screen and (max-width: 991px) {
+        margin-top: 200px;
+    }
 }
 
 .bead-cramp {
