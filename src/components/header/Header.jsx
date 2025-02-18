@@ -4,27 +4,23 @@ import logo from '../../assets/images/home/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-// import { CounterContext } from '@/app/Context/CounterContext'
-// import { ProfileDataContext, useProfileData } from '@/app/Context/ProfileContext'
-// import profileImage from '../../assets/profile.svg'
-// import { toast } from 'sonner'
+import { toast } from 'sonner'
+import { CounterContext } from '@/app/Context/CounterContext'
 export default function NavBar() {
-  // let { cartCont, cartHandling } = useContext(CounterContext);
-  // let { data } = useContext(ProfileDataContext);
-  // console.log(data);
+  let { cartCont, cartHandling } = useContext(CounterContext);
 
   return (
     <header>
-      <div className="overlay hidden" id='overlay-header' onClick={() => { 
+      <div className="overlay hidden" id='overlay-header' onClick={() => {
         document.getElementById("hidden-menue").classList.toggle("hidden");
         document.getElementById("overlay-header").classList.toggle("hidden");
 
-         }}></div>
+      }}></div>
       <div className="container m-auto">
         <div className="mainNavBar">
           <div className="bars-cont">
-            <i className="fa-solid fa-bars colorMain" id='bars' onClick={() => { 
-              document.getElementById("hidden-menue").classList.toggle("hidden") 
+            <i className="fa-solid fa-bars colorMain" id='bars' onClick={() => {
+              document.getElementById("hidden-menue").classList.toggle("hidden")
               document.getElementById("overlay-header").classList.toggle("hidden");
             }}></i>
             <motion.div
@@ -56,13 +52,13 @@ export default function NavBar() {
             <p>Account</p>
           </Link> */}
           <div className="cart-balance">
-            {/* {
-              cartCont.length > 0 ? */}
-            <Link href='/cart' className="cart">
-              <i className="fa-solid fa-cart-shopping"></i>
-              <span>0</span>
-            </Link>
-            {/* :
+            {
+              cartCont.length > 0 ?
+                <Link href='/cart' className="cart">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <span>{cartCont?.length}</span>
+                </Link>
+                :
                 <button className="cart" onClick={() => {
 
                   toast("Your cart is empty", {
@@ -71,14 +67,12 @@ export default function NavBar() {
                       boxShadow: '0px 0px 10px rgba(220, 53, 69, .5)'
                     },
                   });
-                }}>  <i className="fa-solid fa-cart-shopping"></i>
-                  <span>0</span> 
-              </button> } */}
-
-            <div className="balance">
-              <span>0</span>
-              <span>$</span>
-            </div>
+                }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <span>{cartCont?.length}</span>
+                </button>
+            }
+           
           </div>
         </div>
       </div>

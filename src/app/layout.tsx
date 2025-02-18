@@ -6,17 +6,18 @@ import Footer from '../components/home/Footer';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '../style/main.css';
 import logo from '../assets/images/home/logo.svg'
+import { CounterProvider } from "./Context/CounterContext";
 import { Toaster } from "../components/ui/sonner"
 
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Foodi',
-    keywords:"Food , Foodi , Foodie , Foodies ,resturent",
-    description:"Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
+    keywords: "Food , Foodi , Foodie , Foodies ,resturent",
+    description: "Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
     openGraph: {
       title: "Foodi",
-      description:"Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
+      description: "Foodi is a food delivery application that provides a variety of food delivery services in Makkah and Medina. Select from a variety of top-rated restaurants and enjoy the easy and convenient navigation.",
       url: 'https://resturant-five-sandy.vercel.app/',
       siteName: "Foodi",
       images: [
@@ -43,10 +44,12 @@ export default function RootLayout({
     <html lang="en" dir='ltr' id='root'>
       {/* Google Tag Manager */}
       <body className="w-full" suppressHydrationWarning={true}>
-        <Header />
-        {children}
-        <Footer />
-        <Toaster />
+        <CounterProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </CounterProvider>
       </body>
     </html>
   );
