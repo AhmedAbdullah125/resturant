@@ -20,7 +20,6 @@ export default function CartBody() {
     const router = useRouter();
     for (let index = 0; index < cartCont.length; index++) {
         totalPrice += Number(cartCont[index].price) * Number(cartCont[index].Quantity);
-        console.log(cartCont[index].price);
 
 
     }
