@@ -1135,6 +1135,7 @@ footer .served {
   width: 100%;
   aspect-ratio: 3/2;
   overflow: hidden;
+  display: flex;
 }
 .two-meals .meal .img-cont img {
   width: 100%;
