@@ -21,13 +21,13 @@ import "swiper/css/pagination";
 import { CounterContext } from '@/app/Context/CounterContext';
 import { toast } from 'sonner';
 export default function Menue() {
-    const [activeTab, setActiveTab] = useState(4);
+    const [activeTab, setActiveTab] = useState(6);
     let imgs =
         [
             { catId: 1, id: 1, url: img1, rate: 4, price: 10, category: 'Vegetables', name: "Salad" },
             { catId: 1, id: 2, url: img2, rate: 5, price: 8, category: 'Vegetables', name: "Grilled Vegetables" },
             { catId: 1, id: 3, url: img3, rate: 4, price: 12, category: 'Vegetables', name: "Stir-fried Tofu" },
-            { catId: 2, id: 4, url: img4, rate: 3, price: 15, category: 'Vegetables', name: "Vegetable Soup" },
+            { catId: 1, id: 4, url: img4, rate: 3, price: 15, category: 'Vegetables', name: "Vegetable Soup" },
             { catId: 2, id: 5, url: img5, rate: 5, price: 18, category: 'Meals', name: "Chicken Alfredo" },
             { catId: 2, id: 6, url: img6, rate: 4, price: 20, category: 'Meals', name: "Grilled Steak" },
             { catId: 2, id: 7, url: img7, rate: 4, price: 22, category: 'Meals', name: "Shrimp Pasta" },
@@ -54,6 +54,7 @@ export default function Menue() {
             { catId: 5, id: 28, url: img8, rate: 5, price: 25, category: 'Seafood', name: "Crab Legs" },
             { catId: 5, id: 29, url: img9, rate: 4, price: 19, category: 'Seafood', name: "Fried Calamari" }
         ];
+    let data = activeTab === 6 ? imgs : imgs.filter(item => item.catId === activeTab);
     let tabs = [
         { id: 6, name: "All", className: "fa-solid fa-utensils" },
         { id: 1, name: "Vegetables", className: "fa-solid fa-leaf" },
@@ -111,9 +112,9 @@ export default function Menue() {
                         }}
                     >
                         {
-                            imgs.map((item, index) => (
-                                activeTab == item.category || activeTab == 4 ?
-                                    index % 2 !== 0 ?
+                            data.map((item, index) => (
+                                activeTab == item.catId || activeTab == 6 ?
+                                    index % 2 == 0 ?
                                         <SwiperSlide key={index}>
                                             <div className="two-meals">
                                                 <div className="meal">
@@ -184,100 +185,103 @@ export default function Menue() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="meal">
-                                                    <Link className="img-cont" href={'/meal'}>
-                                                        <Image src={item.url} alt="Mazar" width={200} height={200} />
-                                                    </Link>
-                                                    <div className="text">
-                                                        <h4 >{item.name}</h4>
-                                                        <div className="rate">
+                                                {
+                                                    index + 1 < data.length ?
+                                                        <div className="meal">
+                                                            <Link className="img-cont" href={'/meal'}>
+                                                                <Image src={imgs[index + 1].url} alt="Mazar" width={200} height={200} />
+                                                            </Link>
+                                                            <div className="text">
+                                                                <h4 >{imgs[index + 1].name}</h4>
+                                                                <div className="rate">
+                                                                    {
+                                                                        Array(5).fill(0).map((_, idx) =>
+                                                                            <i className={`fa-solid fa-star ${imgs[idx].rate > idx ? 'active' : ''} `} key={idx}></i>
+                                                                        )
+                                                                    }
+                                                                </div>
+                                                                <div className="price-addtocart">
+                                                                    <h5>{imgs[index + 1].price} $</h5>
+                                                                    {
+                                                                        cartCont.findIndex(meal => meal.id === imgs[index + 1].id) ?
+                                                                            <div className="count-cont">
+                                                                                <div className="prod-count">
+                                                                                    <span className='minus' onClick={() => {
 
-                                                            {
-                                                                Array(5).fill(0).map((_, index) =>
-                                                                    <i className={`fa-solid fa-star ${item.rate > index ? 'active' : ''} `} key={index}></i>
-                                                                )
-                                                            }
-                                                        </div>
-                                                        <div className="price-addtocart">
-                                                            <h5>{item.price} $</h5>
-                                                            {
-                                                                cartCont.findIndex(meal => meal.id === item.id) ?
-                                                                    <div className="count-cont">
-                                                                        <div className="prod-count">
-                                                                            <span className='minus' onClick={() => {
+                                                                                        if (imgs[index + 1].Quantity > 1) {
+                                                                                            cartContCopy[cartCont.findIndex(meal => meal.id === imgs[index + 1].id)].Quantity -= 1;
+                                                                                            cartHandling(cartContCopy);
+                                                                                        }
 
-                                                                                if (item.Quantity > 1) {
-                                                                                    cartContCopy[cartCont.findIndex(meal => meal.id === item.id)].Quantity -= 1;
-                                                                                    cartHandling(cartContCopy);
-                                                                                }
+                                                                                    }}
+                                                                                    >-</span>
+                                                                                    {/* <span className='count'>{cartCont[cartCont.findIndex(meal => meal.id === imgs[index-1].id)].Quantity || 1}</span> */}
+                                                                                    <span className='minus'
+                                                                                        onClick={() => {
+                                                                                            cartContCopy[cartCont.findIndex(meal => meal.id === imgs[index + 1].id)].Quantity += 1;
+                                                                                            cartHandling(cartContCopy);
+                                                                                        }}
+                                                                                    >+</span>
 
-                                                                            }}
-                                                                            >-</span>
-                                                                            {/* <span className='count'>{cartCont[cartCont.findIndex(meal => meal.id === item.id)].Quantity || 1}</span> */}
-                                                                            <span className='minus'
+                                                                                </div>
+                                                                                <p className='availability' style={{ display: "none" }}>Only {imgs[index + 1].availability_number} available</p>
+                                                                            </div>
+                                                                            :
+                                                                            <i className="fa-solid fa-cart-shopping"
                                                                                 onClick={() => {
-                                                                                    cartContCopy[cartCont.findIndex(meal => meal.id === item.id)].Quantity += 1;
-                                                                                    cartHandling(cartContCopy);
+
+                                                                                    for (let index = 0; index < cartCont.length; index++) {
+                                                                                        if (cartCont[index + 1].id === imgs[index + 1].id) {
+                                                                                            setAddStatus('Already Added to cart');
+                                                                                            toast('Already Added to cart', {
+                                                                                                style: {
+                                                                                                    borderColor: '#dc3545',
+                                                                                                    boxShadow: '0px 0px 10px rgba(220, 53, 69, .5)',
+                                                                                                },
+                                                                                                description: 'This item is already added to your cart',
+                                                                                            });
+                                                                                            return;
+                                                                                        }
+                                                                                    }
+                                                                                    if (cartCont.includes(imgs[index + 1])) {
+                                                                                        toast('Already Added to cart', {
+                                                                                            style: {
+                                                                                                borderColor: '#28a745',
+                                                                                                boxShadow: '0px 0px 10px rgba(220, 53, 69, .5)',
+                                                                                            },
+                                                                                            description: 'This item is already added to your cart',
+                                                                                        });
+                                                                                    } else {
+                                                                                        setCart([...cart, imgs[index + 1]]);
+                                                                                        if (JSON.parse(localStorage.getItem('cart')) === null) {
+                                                                                            localStorage.setItem('cart', JSON.stringify([]));
+                                                                                        } else {
+                                                                                            localStorage.setItem(
+                                                                                                'cart',
+                                                                                                JSON.stringify([
+                                                                                                    ...JSON.parse(localStorage.getItem('cart')),
+                                                                                                    { ...imgs[index + 1], Quantity: 1 },
+                                                                                                ])
+                                                                                            );
+                                                                                        }
+                                                                                        cartHandling([...cartCont, { ...imgs[index + 1], Quantity: 1 }]);
+                                                                                        setAddStatus('Successfully Added to cart');
+                                                                                        toast('Successfully Added to cart', {
+                                                                                            style: {
+                                                                                                borderColor: '#28a745',
+                                                                                                boxShadow: '0px 0px 10px rgba(40, 167, 69, .5)',
+                                                                                            },
+                                                                                            description: 'This item is successfully added to your cart',
+                                                                                        });
+                                                                                    }
                                                                                 }}
-                                                                            >+</span>
-
-                                                                        </div>
-                                                                        <p className='availability' style={{ display: "none" }}>Only {item.availability_number} available</p>
-                                                                    </div>
-                                                                    :
-                                                                    <i className="fa-solid fa-cart-shopping"
-                                                                        onClick={() => {
-
-                                                                            for (let index = 0; index < cartCont.length; index++) {
-                                                                                if (cartCont[index].id === item.id) {
-                                                                                    setAddStatus('Already Added to cart');
-                                                                                    toast('Already Added to cart', {
-                                                                                        style: {
-                                                                                            borderColor: '#dc3545',
-                                                                                            boxShadow: '0px 0px 10px rgba(220, 53, 69, .5)',
-                                                                                        },
-                                                                                        description: 'This item is already added to your cart',
-                                                                                    });
-                                                                                    return;
-                                                                                }
-                                                                            }
-                                                                            if (cartCont.includes(item)) {
-                                                                                toast('Already Added to cart', {
-                                                                                    style: {
-                                                                                        borderColor: '#28a745',
-                                                                                        boxShadow: '0px 0px 10px rgba(220, 53, 69, .5)',
-                                                                                    },
-                                                                                    description: 'This item is already added to your cart',
-                                                                                });
-                                                                            } else {
-                                                                                setCart([...cart, item]);
-                                                                                if (JSON.parse(localStorage.getItem('cart')) === null) {
-                                                                                    localStorage.setItem('cart', JSON.stringify([]));
-                                                                                } else {
-                                                                                    localStorage.setItem(
-                                                                                        'cart',
-                                                                                        JSON.stringify([
-                                                                                            ...JSON.parse(localStorage.getItem('cart')),
-                                                                                            { ...item, Quantity: 1 },
-                                                                                        ])
-                                                                                    );
-                                                                                }
-                                                                                cartHandling([...cartCont, { ...item, Quantity: 1 }]);
-                                                                                setAddStatus('Successfully Added to cart');
-                                                                                toast('Successfully Added to cart', {
-                                                                                    style: {
-                                                                                        borderColor: '#28a745',
-                                                                                        boxShadow: '0px 0px 10px rgba(40, 167, 69, .5)',
-                                                                                    },
-                                                                                    description: 'This item is successfully added to your cart',
-                                                                                });
-                                                                            }
-                                                                        }}
-                                                                    ></i>
-                                                            }
+                                                                            ></i>
+                                                                    }
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        : null
+                                                }
 
 
                                             </div>

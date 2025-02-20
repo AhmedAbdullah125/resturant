@@ -110,13 +110,13 @@
 
             &:hover {
                 i {
-                    opacity: 1;
+                    color: $main;
                 }
             }
 
             i {
-                color: $main;
-                opacity: 0;
+                color: $white;
+                
                 transition: all 0.3s ease-in-out;
                 font-size: 26px;
             }
@@ -132,7 +132,7 @@
 
         .active-tab {
             i {
-                opacity: 1;
+                color: $main;
             }
 
             h4 {
@@ -485,5 +485,24 @@
                 justify-content: flex-end !important;
             }
         }
+    }
+}
+
+.grid-cont-in-menu{
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    @media screen and (max-width: 991px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: 767px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.menu-main-cont{
+    margin-top: 70px;
+    @media screen and (max-width: 991px) {
+        margin-top: 200px;
     }
 }

@@ -1220,11 +1220,10 @@ footer .served {
   cursor: pointer;
 }
 .menue .tabs .tab:hover i {
-  opacity: 1;
+  color: var(--main-color);
 }
 .menue .tabs .tab i {
-  color: var(--main-color);
-  opacity: 0;
+  color: var(--white-color);
   transition: all 0.3s ease-in-out;
   font-size: 26px;
 }
@@ -1235,7 +1234,7 @@ footer .served {
   margin-bottom: 0;
 }
 .menue .tabs .active-tab i {
-  opacity: 1;
+  color: var(--main-color);
 }
 .menue .tabs .active-tab h4 {
   color: var(--main-color);
@@ -1583,6 +1582,31 @@ footer .served {
 }
 .Testmonials .test-cont .r-side .swiper-pagination {
   justify-content: flex-end !important;
+}
+
+.grid-cont-in-menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media screen and (max-width: 991px) {
+  .grid-cont-in-menu {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .grid-cont-in-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.menu-main-cont {
+  margin-top: 70px;
+}
+@media screen and (max-width: 991px) {
+  .menu-main-cont {
+    margin-top: 200px;
+  }
 }
 
 .cart-page {

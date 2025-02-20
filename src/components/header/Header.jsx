@@ -31,7 +31,7 @@ export default function NavBar() {
               <Link href={'/'}>Home</Link>
               <Link href={'/about'}>About</Link>
               <Link href={'/contact'}>Contact</Link>
-              <Link href={'/menue'}>Menue</Link>
+              <Link href={'/menu'}>Menu</Link>
               <Link href={'/order'}>Order</Link>
             </motion.div>
           </div>

@@ -35,8 +35,8 @@ export default function Gallery() {
                                     <div className="offered-meal-overlay">
                                         <h3 className='offered-meal-title'>{img.name}</h3>
                                         <h5 className='offered-meal-text'>Order Now and Get 20% Off</h5>
-                                        <Link href={'/'} className="button">
-                                            <span href={'/'}>Order Now</span>
+                                        <Link  href={'/meal' } className="button">
+                                            <span >Order Now</span>
                                             <i className="fa-solid fa-arrow-right"></i>
                                         </Link>
                                     </div>
