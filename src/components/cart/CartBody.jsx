@@ -70,7 +70,7 @@ export default function CartBody() {
                                 <div className="cart-product" key={index}>
                                     <div className="l-side">
                                         <div className="img-cont">
-                                            <Image src={item.url} width={100} height={100} alt='product' className='product-img'></Image>
+                                            <Image src={item.images[0]} width={100} height={100} alt='product' className='product-img'></Image>
                                         </div>
                                         <div className="info">
                                             <p className='title'>{item.name}</p>

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://alaa.irfaad.com/api';
+const API_BASE_URL = 'https://restaurant.subcodeco.com/api';
 
 const API_ENDPOINTS = {
   REGISTER: '/auth/register',

@@ -107,7 +107,11 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-
+            img{
+                height: 26px;
+                width: auto;
+                object-fit: contain;
+            }
             &:hover {
                 i {
                     color: $main;

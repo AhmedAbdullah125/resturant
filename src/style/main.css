@@ -1219,6 +1219,12 @@ footer .served {
   gap: 10px;
   cursor: pointer;
 }
+.menue .tabs .tab img {
+  height: 26px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .menue .tabs .tab:hover i {
   color: var(--main-color);
 }
