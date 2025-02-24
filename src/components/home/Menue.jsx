@@ -17,7 +17,6 @@ export default function Menue() {
     let [tabs, setTabs] = useState(
         [
             { id: 0, name: "All", className: "fa-solid fa-utensils" },
-
         ]
     )
     let { cartCont, cartHandling } = useContext(CounterContext);
@@ -206,14 +205,14 @@ export default function Menue() {
                                                             index + 1 < domdom.length ?
                                                                 <div className="meal">
                                                                     <Link className="img-cont" href={'/meal'}>
-                                                                        <Image src={data[index + 1].url} alt="Mazar" width={200} height={200} />
+                                                                        <Image src={data[index + 1].images[0]} alt="Mazar" width={200} height={200} />
                                                                     </Link>
                                                                     <div className="text">
                                                                         <h4 >{data[index + 1].name}</h4>
                                                                         <div className="rate">
                                                                             {
                                                                                 Array(5).fill(0).map((_, idx) =>
-                                                                                    <i className={`fa-solid fa-star ${data[idx].rate > idx ? 'active' : ''} `} key={idx}></i>
+                                                                                    <i className={`fa-solid fa-star ${data[index + 1].rate > idx ? 'active' : ''} `} key={idx}></i>
                                                                                 )
                                                                             }
                                                                         </div>
