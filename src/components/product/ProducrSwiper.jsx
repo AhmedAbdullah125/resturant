@@ -10,7 +10,6 @@ export default function ProducrSwiper(data) {
     let [product, setProduct] = useState(data.product);
     const [bigSwiper, setBigSwiper] = useState(null);
     const [smallSwiper, setSmallSwiper] = useState(null);
-    let [selectedImg, setSelectedImg] = useState(product.image);
     return (
         <div className="ProducrSwiper col col-md-6">
             {/* <div className="mainImgCont">

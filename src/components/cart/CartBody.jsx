@@ -5,29 +5,25 @@ import { CounterContext } from '@/app/Context/CounterContext'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+
 import Link from 'next/link';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, } from "@/components/ui/alert-dialog"
 
 export default function CartBody() {
-    let token = localStorage.getItem('token');
     let { cartCont, cartHandling } = useContext(CounterContext);
     let cartContCopy = [...cartCont];
-    let [bookmarks, setBookmarks] = useState([]);
-    let secBookmark = [...bookmarks];
-
     let totalPrice = 0;
     let [worningDisplay, setWorningDisplay] = useState(false);
     const [tax, setTax] = useState(totalPrice * .15);
     const router = useRouter();
     for (let index = 0; index < cartCont.length; index++) {
         totalPrice += Number(cartCont[index].price) * Number(cartCont[index].Quantity);
-
-
     }
     useEffect(() => {
         //scroll to the top of the page
         window.scrollTo(0, 0);
         setTax(totalPrice * .15);
-    }, [totalPrice])
+    }, [])
 
     const formatCartMessage = (cart, total, tax) => {
         if (cart.length === 0) {
@@ -88,14 +84,37 @@ export default function CartBody() {
 
                                         <div className="count-cont">
                                             <div className="prod-count">
-                                                <span className='minus' onClick={() => {
-                                                    if (item.Quantity > 1) {
-                                                        cartContCopy[index].Quantity = item.Quantity - 1;
-                                                        cartHandling(cartContCopy);
-                                                    }
+                                                {
+                                                    item.Quantity > 1 ?
+                                                        <span className='minus' onClick={() => {
+                                                            if (item.Quantity > 1) {
+                                                                cartContCopy[index].Quantity = item.Quantity - 1;
+                                                                cartHandling(cartContCopy);
+                                                            }
 
-                                                }}
-                                                >-</span>
+                                                        }}
+                                                        >-</span>
+                                                        :
+                                                        <span className='minus'>
+                                                            <AlertDialog >
+                                                                <AlertDialogTrigger asChild>
+                                                                    <i className="fa-regular fa-trash-can trach-in-cart-count" ></i>
+                                                                </AlertDialogTrigger>
+                                                                <AlertDialogContent>
+                                                                    <AlertDialogHeader>
+                                                                        <AlertDialogTitle>Are you sure you want to remove this product from Cart?</AlertDialogTitle>
+                                                                    </AlertDialogHeader>
+                                                                    <AlertDialogFooter className={"flex flex-col-reverse sm:flex-row sm:justify-center sm:space-x-2"}>
+                                                                        <AlertDialogCancel className="m-0">Cancel</AlertDialogCancel>
+                                                                        <AlertDialogAction className={"bg-[#C71919]"} onClick={() => {
+                                                                            cartContCopy.splice(index, 1);
+                                                                            cartHandling(cartContCopy);
+                                                                        }}>Remove</AlertDialogAction>
+                                                                    </AlertDialogFooter>
+                                                                </AlertDialogContent>
+                                                            </AlertDialog>
+                                                        </span>
+                                                }
                                                 <span className='count'>{item.Quantity}</span>
                                                 <span className='minus'
                                                     onClick={() => {
@@ -142,6 +161,6 @@ export default function CartBody() {
                         <p className='worning' style={{ display: worningDisplay ? 'block' : 'none' }}>Please Add Products To Cart</p>
                     </div>
             }
-        </div>
+        </div >
     )
 }
