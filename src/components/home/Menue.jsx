@@ -60,9 +60,8 @@ export default function Menue() {
             )
                 .then(response => {
                     setData(response.data.data);  // Set the response data to state
-                    setDomdom(activeTab === 0 ? response.data.data : response.data.data.filter(item => item.categoryId === activeTab));
-
                     setLoading(false);  // Set loading to false
+                    setDomdom(response.data.data);
                 })
                 .catch(error => {
                     setError(error);  // Handle any errors
@@ -71,7 +70,9 @@ export default function Menue() {
                 });
         }
     }, []);
-
+    useEffect(() => {
+        setDomdom(activeTab === 0 ? data : data.filter(item => item.categoryId === activeTab));
+    }, [activeTab]);
     //fetching categories API
     useEffect(() => {
         const headers = {
