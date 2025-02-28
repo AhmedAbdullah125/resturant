@@ -229,75 +229,89 @@
         position: relative;
         overflow: hidden;
         border-radius: 18px;
-
+    
     }
-    .relative:hover{
-        .offered-meal-overlay {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        // img{
-        //     transform: scale(1.1);
-        // }
-    }
-    .offered-meal-overlay{
-        position: absolute;
-        top: 0;
-        left: 0;
+}
+.g-imgs-cont{
+    position: relative;
+    width: 350px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 18px;   
+    img{
         width: 100%;
         height: 100%;
+        object-fit: cover;
+    }
+   
+
+}
+.relative:hover{
+    .offered-meal-overlay {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    
+    // img{
+    //     transform: scale(1.1);
+    // }
+}
+.offered-meal-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    padding: 10px;
+    transition: opacity 0.3s ease-in-out;
+    .offered-meal-title{
+        color: $white;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .offered-meal-text{
+        color: $white;
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+    .button{
+        background-color: #007A4B;
+        color: $white;
+        padding: 0px 5px 0px 15px;
+        height: 48px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.3);
-        opacity: 0;
-        padding: 10px;
-        transition: opacity 0.3s ease-in-out;
-        .offered-meal-title{
-            color: $white;
-            font-size: 24px;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out;
+        &:hover{
+            background-color: $main;
+        }
+        span{
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 10px;
+            text-decoration: none;
         }
-        .offered-meal-text{
-            color: $white;
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-        .button{
-            background-color: #007A4B;
-            color: $white;
-            padding: 0px 5px 0px 15px;
-            height: 48px;
+        i{
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: background-color 0.3s ease-in-out;
-            &:hover{
-                background-color: $main;
-            }
-            span{
-                font-size: 12px;
-                font-weight: 600;
-                text-decoration: none;
-            }
-            i{
-                width: 35px;
-                height: 35px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                background-color: $white;
-                color: #007A4B;
-                font-size: 20px;
-            }
+            border-radius: 50%;
+            background-color: $white;
+            color: #007A4B;
+            font-size: 20px;
         }
     }
 }

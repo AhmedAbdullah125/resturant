@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <Menue />
       <Gallery />
-      <Offer />
+      {/* <Offer /> */}
       <InstagramsImgs />
       <Testmonials />
     </main>

@@ -24,6 +24,16 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export default function InstagramsImgs() {
+    const [language, setLanguage] = useState('en');  // Default language is 'en'
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Define the headers with the selected language
+            setLanguage(localStorage.getItem('lang'));
+            const headers = {
+                lang: localStorage.getItem('lang'), // Change language dynamically based on state
+            };
+        }
+    }, []);
     const ReviewCard = ({
         url,
     }) => {
@@ -58,8 +68,8 @@ export default function InstagramsImgs() {
         <div className="instagrams">
             <div className="text-cont">
                 <i className="fa-brands fa-instagram"></i>
-                <h2>Follow @Foodi</h2>
-                <h6>Join our community to inspire your desires</h6>
+                <h2>{language === 'en' ? 'follow us on instagram' : 'تابعنا على انستجرام'} @Foodi</h2>
+                <h6>{language === 'en' ? 'Join our community to inspire your desires' : 'انضم إلى مجتمعنا لتحقيق أحلامك'}</h6>
             </div>
             <div className="marq" style={{ direction: 'ltr' }}>
                 <div className="relative flex  w-full flex-col items-center gap-4 justify-center overflow-hidden  ">

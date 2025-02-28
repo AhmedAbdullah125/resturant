@@ -1,27 +1,12 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import img1 from '/public/grid1.png';
-import img2 from '/public/grid2.png';
-import img3 from '/public/grid3.png';
-import img4 from '/public/grid4.png';
-import img5 from '/public/grid5.png';
-import img6 from '/public/grid6.png';
-import img7 from '/public/grid7.png';
-import img8 from '/public/grid8.png';
-import img9 from '/public/grid9.png';
-import img10 from '/public/grid10.png';
-import img11 from '/public/grid11.png';
 import Link from 'next/link';
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import { CounterContext } from '@/app/Context/CounterContext';
 import { toast } from 'sonner';
 import axios from 'axios';
 import { API_BASE_URL } from '@/lib/apiConfig';
+import Loading from '@/app/loading';
 export default function Menu() {
     const [activeTab, setActiveTab] = useState(0);
     let [tabs, setTabs] = useState(
@@ -32,8 +17,6 @@ export default function Menu() {
     )
     let { cartCont, cartHandling } = useContext(CounterContext);
     let [cart, setCart] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
-    let [addStatus, setAddStatus] = useState('Successfully Added to cart');
-    let cartContCopy = [...cartCont];
     let [lang, setLang] = useState('en');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -63,11 +46,10 @@ export default function Menu() {
                     setLoading(false)
                 });
         }
-    }, []);
-    console.log(data);
-    
+    }, []);    
     //fetching categories API
     useEffect(() => {
+        setLoading(true);
         const headers = {
             lang: localStorage.getItem('lang'), // Change language dynamically based on state
         };
@@ -108,7 +90,8 @@ export default function Menu() {
                 <div className="grid-cont grid-cont-in-menu">
 
                     {
-                        data?.map((item, index) => (
+                        loading ?<Loading />:
+                        domdom?.map((item, index) => (
                             activeTab == item.categoryId || activeTab == 0 ?
 
                                 <div className="two-meals" key={index}>
@@ -133,7 +116,6 @@ export default function Menu() {
 
                                                         for (let index = 0; index < cartCont.length; index++) {
                                                             if (cartCont[index].id === item.id) {
-                                                                setAddStatus('Already Added to cart');
                                                                 toast('Already Added to cart', {
                                                                     style: {
                                                                         borderColor: '#dc3545',
@@ -166,7 +148,6 @@ export default function Menu() {
                                                                 );
                                                             }
                                                             cartHandling([...cartCont, { ...item, Quantity: 1 }]);
-                                                            setAddStatus('Successfully Added to cart');
                                                             toast('Successfully Added to cart', {
                                                                 style: {
                                                                     borderColor: '#28a745',

@@ -14,9 +14,10 @@ import axios from 'axios';
 import { API_BASE_URL } from '@/lib/apiConfig';
 export default function Menue() {
     const [activeTab, setActiveTab] = useState(0);
+    let [lang, setLang] = useState('en');
     let [tabs, setTabs] = useState(
         [
-            { id: 0, name: "All", className: "fa-solid fa-utensils" },
+            { id: 0, name: lang === 'en' ? "All" : "الكل", className: "fa-solid fa-utensils" },
         ]
     )
     let { cartCont, cartHandling } = useContext(CounterContext);
@@ -26,7 +27,6 @@ export default function Menue() {
 
     let [cartcontIds, setCartcontIds] = useState([]);
     let cartContIdsCopy = [...cartcontIds];
-    let [lang, setLang] = useState('en');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
@@ -34,6 +34,17 @@ export default function Menue() {
     for (let i = 0; i < cartCont.length; i++) {
         cartContIdsCopy.push(cartCont[i].id);
     }
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem('lang') === 'ar' || localStorage.getItem('lang') === 'en') {
+                setLang(localStorage.getItem('lang'));
+            }
+            else {
+                localStorage.setItem('lang', 'en');
+                setLang('en');
+            }
+        }
+    }, [lang]);
     useEffect(() => {
         setLoading(true);
         if (typeof window !== 'undefined') {
@@ -72,7 +83,7 @@ export default function Menue() {
             }
         )
             .then(response => {
-                setTabs([{ id: 0, name: "All", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
+                setTabs([{ id: 0, name: lang === 'en' ? "All" : "الكل", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
                 setLoading(false);  // Set loading to false
             })
             .catch(error => {
@@ -81,14 +92,13 @@ export default function Menue() {
                 setLoading(false)
             });
     }, [])
-    console.log(data);
 
     return (
         <div className="menue">
             {
                 loading ? <Loading /> :
                     <div className="container m-auto">
-                        <h2>Out Fresh Products</h2>
+                        <h2>{lang == 'en' ? 'Our Fresh Products' : 'المنتجات الطازجة'}</h2>
                         <div className="tabs">
                             {
                                 tabs.map((item, index) =>
@@ -114,7 +124,7 @@ export default function Menue() {
                                 modules={[Autoplay, Navigation, Pagination]}
                                 breakpoints={{
                                     1400: {
-                                        slidesPerView: 4,
+                                        slidesPerView: 5,
                                     },
                                     1100: {
                                         slidesPerView: 4,
@@ -136,7 +146,6 @@ export default function Menue() {
                             >
                                 {
                                     domdom.map((item, index) => (
-
                                         activeTab == item.categoryId || activeTab == 0 ?
                                             index % 2 == 0 ?
                                                 <SwiperSlide key={index}>
@@ -147,16 +156,20 @@ export default function Menue() {
                                                             </Link>
                                                             <div className="text">
                                                                 <h4>{item.name}</h4>
-                                                                <div className="rate">
+                                                                {/* <div className="rate">
 
                                                                     {
                                                                         Array(5).fill(0).map((raye, index) =>
                                                                             <i className={`fa-solid fa-star ${item.rate > index ? 'active' : ''} `} key={index}></i>
                                                                         )
                                                                     }
-                                                                </div>
+                                                                </div> */}
                                                                 <div className="price-addtocart">
-                                                                    <h5>{item.price} $</h5>
+                                                                    <div className="price-ccoonntt">
+                                                                        <h5>{item.price} $</h5>
+                                                                        <h6 className='text-decoration-line-through' >{item.price * 1.2} $</h6>
+                                                                    </div>
+
                                                                     {
                                                                         cartContIdsCopy.includes(item.id) ?
                                                                             <div className="count-cont">
@@ -219,15 +232,19 @@ export default function Menue() {
                                                                     </Link>
                                                                     <div className="text">
                                                                         <h4 >{domdom[index + 1].name}</h4>
-                                                                        <div className="rate">
+                                                                        {/* <div className="rate">
                                                                             {
                                                                                 Array(5).fill(0).map((_, idx) =>
                                                                                     <i className={`fa-solid fa-star ${domdom[index + 1].rate > idx ? 'active' : ''} `} key={idx}></i>
                                                                                 )
                                                                             }
-                                                                        </div>
+                                                                        </div> */}
                                                                         <div className="price-addtocart">
-                                                                            <h5>{domdom[index + 1].price} $</h5>
+                                                                            <div className="price-ccoonntt">
+                                                                                <h5>{domdom[index + 1].price} $</h5>
+                                                                                <h6 className='text-decoration-line-through' >{domdom[index + 1].price * 1.2} $</h6>
+                                                                            </div>
+
                                                                             {
                                                                                 cartContIdsCopy.includes(domdom[index + 1].id) ?
                                                                                     <div className="count-cont">

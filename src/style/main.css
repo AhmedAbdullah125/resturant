@@ -969,11 +969,27 @@ header .cart-balance {
   overflow: hidden;
   border-radius: 18px;
 }
-.gallery .relative:hover .offered-meal-overlay {
+
+.g-imgs-cont {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.g-imgs-cont img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.relative:hover .offered-meal-overlay {
   opacity: 1;
   transform: scale(1.1);
 }
-.gallery .offered-meal-overlay {
+
+.offered-meal-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -988,19 +1004,19 @@ header .cart-balance {
   padding: 10px;
   transition: opacity 0.3s ease-in-out;
 }
-.gallery .offered-meal-overlay .offered-meal-title {
+.offered-meal-overlay .offered-meal-title {
   color: var(--white-color);
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 10px;
 }
-.gallery .offered-meal-overlay .offered-meal-text {
+.offered-meal-overlay .offered-meal-text {
   color: var(--white-color);
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 10px;
 }
-.gallery .offered-meal-overlay .button {
+.offered-meal-overlay .button {
   background-color: #007A4B;
   color: var(--white-color);
   padding: 0px 5px 0px 15px;
@@ -1013,15 +1029,15 @@ header .cart-balance {
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
 }
-.gallery .offered-meal-overlay .button:hover {
+.offered-meal-overlay .button:hover {
   background-color: var(--main-color);
 }
-.gallery .offered-meal-overlay .button span {
+.offered-meal-overlay .button span {
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
 }
-.gallery .offered-meal-overlay .button i {
+.offered-meal-overlay .button i {
   width: 35px;
   height: 35px;
   display: flex;
@@ -1145,7 +1161,7 @@ footer .served {
 }
 .two-meals .meal .text {
   background-color: var(--white-color);
-  padding: 28px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -1178,6 +1194,12 @@ footer .served {
   font-weight: 700;
   color: var(--main-color);
 }
+.two-meals .meal .text .price-addtocart .text-decoration-line-through {
+  text-decoration: line-through;
+  color: #a2a2a2;
+  font-size: 13px;
+  font-weight: 700;
+}
 .two-meals .meal .text .price-addtocart i {
   width: 45px;
   height: 45px;
@@ -1204,6 +1226,13 @@ footer .served {
 
 .menue {
   padding: 50px 0;
+}
+.menue h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white-color);
+  text-align: center;
+  margin-bottom: 40px;
 }
 .menue .tabs {
   display: flex;
@@ -2281,7 +2310,7 @@ footer .served {
 .prod-count {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 }
 .prod-count span {
   font-size: 24px;

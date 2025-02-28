@@ -11,6 +11,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 export default function Hero() {
+    const [language, setLanguage] = useState('en');  // Default language is 'en'
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Define the headers with the selected language
+            setLanguage(localStorage.getItem('lang'));
+            const headers = {
+                lang: localStorage.getItem('lang'), // Change language dynamically based on state
+            };
+        }
+    }, []);
 
     return (
         <Swiper
@@ -47,10 +57,10 @@ export default function Hero() {
                     <Image src={heroImg} alt="Mazar" width={200} height={200} />
                     <div className="overlay">
                         <div className="heading">
-                            <h4>Hello to Resturent</h4>
-                            <h2>RESERVE YOUR TABLE</h2>
+                            <h4>{language === 'ar' ? 'مرحبا بكم' : 'Hello to Resturent'}</h4>
+                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : 'don\'t miss our offers'}</h2>
                             <div className="btns">
-                                <Link href={'/menu'} className='book-link'>OPEN MENU</Link>
+                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : 'افتح القائمة'}</Link>
                             </div>
                         </div>
                     </div>
@@ -58,19 +68,18 @@ export default function Hero() {
             </SwiperSlide>
             <SwiperSlide >
                 <div className="hero">
-                    <Image src={img9} alt="Mazar" width={200} height={200} />
+                    <Image src={heroImg} alt="Mazar" width={200} height={200} />
                     <div className="overlay">
                         <div className="heading">
-                            <h4>Hello to Resturent</h4>
-                            <h2>RESERVE YOUR TABLE</h2>
+                            <h4>{language === 'ar' ? 'مرحبا بكم' : 'Hello to Resturent'}</h4>
+                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : 'don\'t miss our offers'}</h2>
                             <div className="btns">
-                                <Link href={'/menu'} className='book-link'>OPEN MENU</Link>
+                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : 'افتح القائمة'}</Link>
                             </div>
                         </div>
                     </div>
                 </div>
             </SwiperSlide>
-
         </Swiper>
     )
 }

@@ -35,13 +35,13 @@ export default function CartBody() {
         cart.forEach((item, index) => {
             message += `⭐️ *${item.name}*\n`;
             message += `📦 Quantity: ${item.Quantity}\n`;
-            message += `💰 Price: ${item.price} K.D each\n`;
+            message += `💰 Price: ${item.price} $ each\n`;
             message += "-----------------\n";
         });
 
-        message += `🧾 *Total Price*: ${total} K.D\n`;
-        message += `📊 *VAT (15%)*: ${tax} K.D\n`;
-        message += `💵 *Grand Total*: ${(total + tax).toFixed(2)} K.D\n\n`;
+        message += `🧾 *Total Price*: ${total} $\n`;
+        message += `📊 *VAT (15%)*: ${tax} $\n`;
+        message += `💵 *Grand Total*: ${(total + tax).toFixed(2)} $\n\n`;
         message += "📌 *Please confirm my order.*";
 
         return message;
@@ -140,17 +140,17 @@ export default function CartBody() {
                         <div className="price-details">
                             <div className="flex-dit">
                                 <div className="head">Total Items</div>
-                                <div className="value">{totalPrice} K.D</div>
+                                <div className="value">{totalPrice} $</div>
                             </div>
                             <div className="flex-dit">
                                 <div className="head">Total VAT</div>
-                                <div className="value">{tax} K.D</div>
+                                <div className="value">{tax} $</div>
                             </div>
 
                         </div>
                         <div className="total">
                             <div className="head">Total</div>
-                            <div className="value">{totalPrice + tax} K.D</div>
+                            <div className="value">{totalPrice + tax} $</div>
                         </div>
                         <Link
                             href={`https://wa.me/+201068389295?text=${encodeURIComponent(formatCartMessage(cartCont, totalPrice, tax))}`}
