@@ -57,10 +57,10 @@ export default function Hero() {
                     <Image src={heroImg} alt="Mazar" width={200} height={200} />
                     <div className="overlay">
                         <div className="heading">
-                            <h4>{language === 'ar' ? 'مرحبا بكم' : 'Hello to Resturent'}</h4>
-                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : 'don\'t miss our offers'}</h2>
+                            <h4>{language === 'ar' ? 'مرحبا بكم' : language === 'tr' ? "Restorana Merhaba" : "Hello to Resturent"}</h4>
+                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : language === 'tr' ? "Özel Tekliflerimiz" : 'don\'t miss our offers'}</h2>
                             <div className="btns">
-                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : 'افتح القائمة'}</Link>
+                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : language === 'tr' ? "Menuyu Aç" : 'افتح القائمة'}</Link>
                             </div>
                         </div>
                     </div>
@@ -71,10 +71,10 @@ export default function Hero() {
                     <Image src={heroImg} alt="Mazar" width={200} height={200} />
                     <div className="overlay">
                         <div className="heading">
-                            <h4>{language === 'ar' ? 'مرحبا بكم' : 'Hello to Resturent'}</h4>
-                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : 'don\'t miss our offers'}</h2>
+                            <h4>{language === 'ar' ? 'مرحبا بكم' : language === 'tr' ? "Restorana Merhaba" : "Hello to Resturent"}</h4>
+                            <h2>{language === 'ar' ? 'الحق عروض الشتاء من مطعمنا ' : language === 'tr' ? "Özel Tekliflerimiz" : 'don\'t miss our offers'}</h2>
                             <div className="btns">
-                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : 'افتح القائمة'}</Link>
+                                <Link href={'/menu'} className='book-link'>{language === 'en' ? 'OPEN MENU' : language === 'tr' ? "Menuyu Aç" : 'افتح القائمة'}</Link>
                             </div>
                         </div>
                     </div>

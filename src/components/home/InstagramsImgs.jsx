@@ -68,8 +68,8 @@ export default function InstagramsImgs() {
         <div className="instagrams">
             <div className="text-cont">
                 <i className="fa-brands fa-instagram"></i>
-                <h2>{language === 'en' ? 'follow us on instagram' : 'تابعنا على انستجرام'} @Foodi</h2>
-                <h6>{language === 'en' ? 'Join our community to inspire your desires' : 'انضم إلى مجتمعنا لتحقيق أحلامك'}</h6>
+                <h2>{language === 'en' ? 'follow us on instagram' : language === 'tr' ? "Bizi Instagram'da takip edin" : 'تابعنا على انستقرام'} @Foodi</h2>
+                <h6>{language === 'en' ? 'Join our community to inspire your desires' : language === 'tr' ? "Katılın ve isteklerinizi inşa edin" : 'انضم لمجتمعنا لتحديث أحلامك'}</h6>
             </div>
             <div className="marq" style={{ direction: 'ltr' }}>
                 <div className="relative flex  w-full flex-col items-center gap-4 justify-center overflow-hidden  ">

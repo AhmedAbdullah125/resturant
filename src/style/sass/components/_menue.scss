@@ -328,6 +328,12 @@
             font-weight: 700;
             color: $white;
             margin-bottom: 10px;
+            text-align: center;
+            @media screen and (max-width: 767px) {
+                font-size: 40px;
+
+                
+            }
         }
         h6{
             font-size: 16px;

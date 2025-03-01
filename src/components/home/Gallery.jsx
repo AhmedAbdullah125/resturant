@@ -40,7 +40,7 @@ export default function Gallery() {
     }, []);
 
     const ReviewCard = ({
-        image, name , discount,description , priceAfterDiscount ,priceBeforeDiscount
+        image, name , discount,description , priceAfterDiscount ,priceBeforeDiscount , id
     }) => {
         return (
             <figure className={cn()} >
@@ -50,9 +50,9 @@ export default function Gallery() {
                             <h3 className='offered-meal-title'>{name}</h3>
                             <p>{parse(description)}</p>
                             <h6 className='price'><span className='new-price'>{priceAfterDiscount}</span> <span className='old-price'>{priceBeforeDiscount}</span></h6>
-                            <h5 className='offered-meal-text'>{language === 'en' ? `Order Now and Get ${discount}% Off` : `اطلب الان وحصل على ${discount}% خصم`}</h5>
-                            <Link href={'/meal'} className="button">
-                                <span >{language === 'en' ? 'Order Now' : 'اطلب الان'}</span>
+                            <h5 className='offered-meal-text'>{language === 'en' ? `Order Now and Get ${discount}% Off` : language === 'tr'? `Şimdi sipariş verin ve ${discount}% indirim alın` : `اطلب الان وحصل على ${discount}% خصم`}</h5>
+                            <Link href={`/meal?id=${id}`} className="button">
+                                <span >{language === 'en' ? 'Order Now' : language === 'tr'? 'Sipariş Verin' : 'اطلب الان'}</span>
                                 <i className="fa-solid fa-arrow-right"></i>
                             </Link>
                         </div>
@@ -65,7 +65,7 @@ export default function Gallery() {
     return (
         <div className="gallery" id='gallery'>
             <div className="container mx-auto">
-                <h2 className="Sec-title">{language === 'en' ? 'Our Offers' : 'عروضنا'}</h2>
+                <h2 className="Sec-title">{language === 'en' ? 'Our Offers' : language === 'tr'? 'Nasıl Yemekler' : 'عروضنا'}</h2>
                 <section id="photos">
                     {/* <div className="columns-1 sm:columns-2 gap-4 md:columns-4">
                         {imgs.map((img, idx) => (
@@ -74,7 +74,7 @@ export default function Gallery() {
                                     <div className="offered-meal-overlay">
                                         <h3 className='offered-meal-title'>{img.name}</h3>
                                         <h5 className='offered-meal-text'>Order Now and Get 20% Off</h5>
-                                        <Link  href={'/meal' } className="button">
+                                        <Link  href={'/mealsssssssssssssss' } className="button">
                                             <span >Order Now</span>
                                             <i className="fa-solid fa-arrow-right"></i>
                                         </Link>

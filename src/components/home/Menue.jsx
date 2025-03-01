@@ -34,17 +34,7 @@ export default function Menue() {
     for (let i = 0; i < cartCont.length; i++) {
         cartContIdsCopy.push(cartCont[i].id);
     }
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            if (localStorage.getItem('lang') === 'ar' || localStorage.getItem('lang') === 'en') {
-                setLang(localStorage.getItem('lang'));
-            }
-            else {
-                localStorage.setItem('lang', 'en');
-                setLang('en');
-            }
-        }
-    }, [lang]);
+
     useEffect(() => {
         setLoading(true);
         if (typeof window !== 'undefined') {
@@ -84,7 +74,7 @@ export default function Menue() {
             }
         )
             .then(response => {
-                setTabs([{ id: 0, name: lang === 'en' ? "All" : "الكل", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
+                setTabs([{ id: 0, name: localStorage.getItem('lang') === 'en' ? "ALL" : localStorage.getItem('lang') === 'tr' ? "TÜM" : "الكل", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
                 setLoading(false);  // Set loading to false
             })
             .catch(error => {
@@ -95,11 +85,11 @@ export default function Menue() {
     }, [])
 
     return (
-        <div className="menue">
+        <div className="menue" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
             {
                 loading ? <Loading /> :
                     <div className="container m-auto">
-                        <h2>{lang == 'en' ? 'Our Fresh Products' : 'المنتجات الطازجة'}</h2>
+                        <h2>{lang == 'en' ? 'Our Fresh Products' : lang == 'tr' ? 'Ürünlerimiz' : 'المنتجات الطازجة'}</h2>
                         <div className="tabs">
                             {
                                 tabs.map((item, index) =>
@@ -152,7 +142,7 @@ export default function Menue() {
                                                 <SwiperSlide key={index}>
                                                     <div className="two-meals">
                                                         <div className="meal">
-                                                            <Link className="img-cont" href={'/meal'}>
+                                                            <Link className="img-cont" href={`/meal?id=${item.id}`}>
                                                                 <Image src={item.images[0]} alt="Mazar" width={200} height={200} />
                                                             </Link>
                                                             <div className="text">
@@ -228,7 +218,7 @@ export default function Menue() {
                                                         {
                                                             index + 1 < domdom.length ?
                                                                 <div className="meal">
-                                                                    <Link className="img-cont" href={'/meal'}>
+                                                                    <Link className="img-cont" href={`/meal?id=${domdom[index + 1].id}`}>
                                                                         <Image src={domdom[index + 1].images[0]} alt="Mazar" width={200} height={200} />
                                                                     </Link>
                                                                     <div className="text">

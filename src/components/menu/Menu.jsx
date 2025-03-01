@@ -59,7 +59,7 @@ export default function Menu() {
             }
         )
             .then(response => {
-                setTabs([{ id: 0, name: "All", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
+                setTabs([{ id: 0, name: localStorage.getItem('lang') === 'en' ? "ALL" : localStorage.getItem('lang') === 'tr' ? "TÜM" : "الكل", className: "fa-solid fa-utensils" }, ...response.data.data]);  // Set the response data to state
                 setLoading(false);  // Set loading to false
             })
             .catch(error => {
@@ -71,7 +71,7 @@ export default function Menu() {
     return (
         <div className="menue menu-main-cont">
             <div className="container m-auto">
-                <h2>Out Fresh Products</h2>
+                <h2>{lang === 'en' ? "Out Fresh Products" : lang === 'tr' ? "Yeni Ürünler" : "المنتجات الحديثة"}</h2>
                 <div className="tabs">
                     {
                         tabs.map((item, index) =>
@@ -80,7 +80,7 @@ export default function Menu() {
                                     item.className ?
                                         <i className={item.className}></i>
                                         :
-                                        <Image src={item.image} alt="Mazar" width={200} height={200} />
+                                        <Image src={item.image} alt="foodi" width={200} height={200} />
                                 }
                                 <h4>{item.name}</h4>
                             </div>
@@ -96,8 +96,8 @@ export default function Menu() {
 
                                 <div className="two-meals" key={index}>
                                     <div className="meal">
-                                        <Link className="img-cont" href={'/meal'}>
-                                            <Image src={item.images[0]} alt="Mazar" width={200} height={200} />
+                                        <Link className="img-cont" href={`/meal?id=${item.id}`}>
+                                            <Image src={item.images[0]} alt="foodi" width={200} height={200} />
                                         </Link>
                                         <div className="text">
                                             <h4>{item.name}</h4>

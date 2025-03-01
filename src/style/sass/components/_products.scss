@@ -223,6 +223,15 @@
     align-items: center;
     gap: 24px;
 }
+.ProductDetails{
+    .count-cont {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+}
 
 .ProductDetails {
     display: flex;

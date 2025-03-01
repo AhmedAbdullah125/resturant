@@ -1,9 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import img1 from '/public/san.png';
-import Link from 'next/link';
-
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -12,7 +8,6 @@ import "swiper/css/pagination";
 import axios from 'axios';
 import { API_BASE_URL } from '@/lib/apiConfig';
 import Loading from '@/app/loading';
-
 export default function Testmonials() {
     const [language, setLanguage] = useState('en');  // Default language is 'en'
     const [data, setData] = useState([]);
@@ -23,6 +18,7 @@ export default function Testmonials() {
     const [rate3, setRate3] = useState(0);
     const [rate2, setRate2] = useState(0);
     const [rate1, setRate1] = useState(0);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -44,7 +40,7 @@ export default function Testmonials() {
                     let rt3 = 0;
                     let rt2 = 0;
                     let rt1 = 0;
-                    console.log(response.data.data);
+                    let total = 0;
                     
                     for(let i = 0; i < response.data.data.length; i++){
                         if(response.data.data[i].rate >= 5){
@@ -58,6 +54,7 @@ export default function Testmonials() {
                         }else if(response.data.data[i].rate >= 1){
                             rt1++;
                         }
+                        total= total + response.data.data[i].rate
 
                     }
                     setRate5(rt5);
@@ -65,6 +62,7 @@ export default function Testmonials() {
                     setRate3(rt3);
                     setRate2(rt2);
                     setRate1(rt1);
+                    setTotal(total);
                 })
                 .catch(error => {
                     setError(error);  // Handle any errors
@@ -73,9 +71,6 @@ export default function Testmonials() {
                 });
         }
     }, []);
-    console.log(data);
-
-
     return (
         <div className="Testmonials" >
             {
@@ -86,8 +81,8 @@ export default function Testmonials() {
                                 <div className="l-side">
                                     <div className="sqr"></div>
                                     <div className="rate-head">
-                                        <h2>4.8</h2>
-                                        <p>Based on 5000+ reviews</p>
+                                        <h2>{total/data.length}</h2>
+                                        <p>{language === 'en' ? `Based on ${data.length} reviews` : language === 'tr'? `Puanlama için ${data.length} yorum}` : `بناناً على ${data.length} تقييمات`  }</p>
                                     </div>
                                     <div className="stars-rates">
                                         <div className="rate">

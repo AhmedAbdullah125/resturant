@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import van from '../../assets/products/van.svg'
 import Image from 'next/image';
 import { CounterContext } from '@/app/Context/CounterContext';
@@ -12,24 +12,22 @@ export default function ProductDetails({ product, title }) {
     let { cartCont, cartHandling } = useContext(CounterContext);
     let [cart, setCart] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
     let [addStatus, setAddStatus] = useState('Successfully Added to cart');
+    const [lang, setLang] = useState('en');
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Define the headers with the selected language
+            setLang(localStorage.getItem('lang'));
+            const headers = {
+                lang: localStorage.getItem('lang'), // Change language dynamically based on state
+            };
+        }
+    })
     // const router = useRouter();
     // const {data} = useContext(ProfileDataContext);
     return (
         <div className={`ProductDetails  col col-md-6 ${title == "Ticket" ? "ticket-productDetails" : ""}`}>
             <h3 className='product-name'>{product.name}</h3>
-            <h4 className='product-cat'>{product.category}</h4>
-            <div className="rate">
-                <div className="stars">
-                    <i className={`${product.rate >= 1 ? "goldenStar" : "grayStar"} fa-solid fa-star`} ></i>
-                    <i className={`${product.rate >= 2 ? "goldenStar" : "grayStar"} fa-solid fa-star`} ></i>
-                    <i className={`${product.rate >= 3 ? "goldenStar" : "grayStar"} fa-solid fa-star`} ></i>
-                    <i className={`${product.rate >= 4 ? "goldenStar" : "grayStar"} fa-solid fa-star`} ></i>
-                    <i className={`${product.rate >= 5 ? "goldenStar" : "grayStar"} fa-solid fa-star`} ></i>
-                </div>
-                <p> ( based on 100 reviews ) </p>
-            </div>
-            <p className='tickets-text'>{product.text}</p>
-            <p className='tickets-persons'>{product.persons} person</p>
+            <h4 className='product-cat'>{product.categoryName}</h4>
             <p className='prod-price'>{product.price} $</p>
             <div className="count-cont">
                 <div className="prod-count">
@@ -47,7 +45,7 @@ export default function ProductDetails({ product, title }) {
                     >+</span>
                 </div>
             </div>
-            <p className='policies'> Read More About <Link href={'/policies'}><span>Return Policy</span></Link>  </p>
+            <p className='policies'>{lang === 'en' ? ' Read More About' : lang === 'tr' ? 'Geri Dönüş Politikası' : 'قراءة المزيد عن'} <Link href={'/policies'}><span>{lang === 'en' ? 'Return Policy' : lang === 'tr' ? 'Geri Dönüş Politikası' : 'سياسة الاسترجاع'}</span></Link>  </p>
             <button className='cartLink' onClick={() => {
                 for (let index = 0; index < cartCont.length; index++) {
                     if (cartCont[index].id === product.id) {
@@ -93,7 +91,7 @@ export default function ProductDetails({ product, title }) {
                         description: 'This item is successfully added to your cart',
                     });
                 }
-            }}>Add to Cart</button>
+            }}>{lang === 'en' ? 'Add to cart' : lang === 'tr' ? 'Sepete Ekle' : 'إضافة إلى السلة'}</button>
         </div>
     )
 }

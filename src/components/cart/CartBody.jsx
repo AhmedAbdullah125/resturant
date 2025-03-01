@@ -12,6 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 export default function CartBody() {
     let { cartCont, cartHandling } = useContext(CounterContext);
     let cartContCopy = [...cartCont];
+    const [language, setLanguage] = useState('en');
     let totalPrice = 0;
     let [worningDisplay, setWorningDisplay] = useState(false);
     const [tax, setTax] = useState(totalPrice * .15);
@@ -20,10 +21,18 @@ export default function CartBody() {
         totalPrice += Number(cartCont[index].price) * Number(cartCont[index].Quantity);
     }
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Define the headers with the selected language
+            setLanguage(localStorage.getItem('lang'));
+            const headers = {
+                lang: localStorage.getItem('lang'), // Change language dynamically based on state
+            };
+        }
         //scroll to the top of the page
         window.scrollTo(0, 0);
         setTax(totalPrice * .15);
     }, [])
+
 
     const formatCartMessage = (cart, total, tax) => {
         if (cart.length === 0) {
@@ -47,21 +56,21 @@ export default function CartBody() {
         return message;
     };
     return (
-        <div className="cart-body">
+        <div className="cart-body" style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}>
             <div className="prods">
                 <div className="prods-heading">
-                    <h2>Products ( {cartCont.length} )</h2>
+                    <h2>{language === 'en' ? "My Cart" :language === 'tr' ? "Sepetim" : "سلة المشتريات"} ( {cartCont.length} )</h2>
                     <button
                         onClick={() => {
                             localStorage.setItem('cart', JSON.stringify([]));
                             cartHandling([]);
                             router.push('/');
                         }}
-                    ><i className="fa-regular fa-trash-can"></i> clear all cart</button>
+                    ><i className="fa-regular fa-trash-can"></i> {language === 'en' ? "Clear Cart" :language === 'tr' ? "Temizle" : "مسح السلة"}</button>
                 </div>
                 <div className="cart-products">
                     {
-                        cartCont.length === 0 ? <p className='empty'>Cart is Empty</p> :
+                        cartCont.length === 0 ? <p className='empty'>{language === 'en' ? "Your cart is empty." :language === 'tr' ? "Sepetiniz boş." : "سلة التسوق فارغة."}</p> :
                             cartCont.map((item, index) =>
                                 <div className="cart-product" key={index}>
                                     <div className="l-side">
@@ -102,14 +111,14 @@ export default function CartBody() {
                                                                 </AlertDialogTrigger>
                                                                 <AlertDialogContent>
                                                                     <AlertDialogHeader>
-                                                                        <AlertDialogTitle>Are you sure you want to remove this product from Cart?</AlertDialogTitle>
+                                                                        <AlertDialogTitle>{language === 'en' ? "Are you sure?" :language === 'tr' ? "Emin misiniz?" : "هل أنت متأكد؟"}</AlertDialogTitle>
                                                                     </AlertDialogHeader>
                                                                     <AlertDialogFooter className={"flex flex-col-reverse sm:flex-row sm:justify-center sm:space-x-2"}>
-                                                                        <AlertDialogCancel className="m-0">Cancel</AlertDialogCancel>
+                                                                        <AlertDialogCancel className="m-0">{language === 'en' ? "Cancel" :language === 'tr' ? "İptal" : "إلغاء"}</AlertDialogCancel>
                                                                         <AlertDialogAction className={"bg-[#C71919]"} onClick={() => {
                                                                             cartContCopy.splice(index, 1);
                                                                             cartHandling(cartContCopy);
-                                                                        }}>Remove</AlertDialogAction>
+                                                                        }}>{language === 'en' ? "Delete" :language === 'tr' ? "Sil" : "حذف"}</AlertDialogAction>
                                                                     </AlertDialogFooter>
                                                                 </AlertDialogContent>
                                                             </AlertDialog>
@@ -122,9 +131,7 @@ export default function CartBody() {
                                                         cartHandling(cartContCopy);
                                                     }}
                                                 >+</span>
-
                                             </div>
-                                            <p className='availability' style={{ display: "none" }}>Only {item.availability_number} available</p>
                                         </div>
                                     </div>
                                 </div>
@@ -136,29 +143,29 @@ export default function CartBody() {
 
                 cartCont.length === 0 ? null :
                     <div className="price-summary">
-                        <h2>Price Summary</h2>
+                        <h2>{language === 'en' ? "Price Summary" :language === 'tr' ? "Fiyat Özeti" : "ملخص السعر"}</h2>
                         <div className="price-details">
                             <div className="flex-dit">
-                                <div className="head">Total Items</div>
+                                <div className="head">{language === 'en' ? "Total item  " :language === 'tr' ? "Toplam ürün" : " إجمالي المنتج"}</div>
                                 <div className="value">{totalPrice} $</div>
                             </div>
                             <div className="flex-dit">
-                                <div className="head">Total VAT</div>
+                                <div className="head">{language === 'en' ? "Total VAT" :language === 'tr' ? "Toplam VAT" : "إجمالي الضريبة"}</div>
                                 <div className="value">{tax} $</div>
                             </div>
 
                         </div>
                         <div className="total">
-                            <div className="head">Total</div>
+                            <div className="head">{language === 'en' ? "Total" :language === 'tr' ? "Toplam" : "إجمالي"}</div>
                             <div className="value">{totalPrice + tax} $</div>
                         </div>
                         <Link
                             href={`https://wa.me/+201068389295?text=${encodeURIComponent(formatCartMessage(cartCont, totalPrice, tax))}`}
                             className='addBtn'
                         >
-                            Checkout
+                            {language === 'en' ? "Checkout" :language === 'tr' ? "Ödeme" : "الدفع"}
                         </Link>
-                        <p className='worning' style={{ display: worningDisplay ? 'block' : 'none' }}>Please Add Products To Cart</p>
+                        <p className='worning' style={{ display: worningDisplay ? 'block' : 'none' }}>{language === 'en' ? "Please Add Products To Cart" :language === 'tr' ? "Lütfen Sepete Ürün Ekleyin" : "يرجى إضافة منتجات إلى السلة"}</p>
                     </div>
             }
         </div >
