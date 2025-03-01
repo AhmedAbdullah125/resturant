@@ -105,12 +105,12 @@ export default function Menue() {
                                 )
                             }
                         </div>
-                        <div className="grid-cont">
+                        <div className="grid-cont" style={{ direction: 'ltr' }}>
                             <Swiper
                                 slidesPerView={4}
                                 spaceBetween={30}
                                 autoplay={true}
-                                dir={'ltr'}
+                                dir={lang === 'ar' ? 'rtl' : 'ltr'}
                                 loop={true}
                                 modules={[Autoplay, Navigation, Pagination]}
                                 breakpoints={{
@@ -139,8 +139,8 @@ export default function Menue() {
                                     domdom.map((item, index) => (
                                         activeTab == item.categoryId || activeTab == 0 ?
                                             index % 2 == 0 ?
-                                                <SwiperSlide key={index}>
-                                                    <div className="two-meals">
+                                                <SwiperSlide key={index} >
+                                                    <div className="two-meals" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
                                                         <div className="meal">
                                                             <Link className="img-cont" href={`/meal?id=${item.id}`}>
                                                                 <Image src={item.images[0]} alt="Mazar" width={200} height={200} />
