@@ -86,7 +86,7 @@ export default function NavBar() {
           <div className="input-cont">
             <input type="text" placeholder={lang === 'en' ? 'Search' : lang === 'tr' ? 'Ara' : "بحث"} onKeyUp={sendSearchRequest} id='search-input' />
           {
-            searchData?.length > 0 ?
+            document.getElementById('search-input')?.value.length > 0 ?
               <div className="search-data">
                 {searchData?.length > 0 ?
                   searchData.map((item, index) =>
@@ -97,10 +97,10 @@ export default function NavBar() {
                       location.search;
                     }}>
                       <div className="img">
-                        {/* <Image src={item?.image[0]} alt='image' width={100} height={100}></Image> */}
+                        <Image src={item?.images[0]} alt='image' width={100} height={100}></Image>
                       </div>
                       <div className="text">
-                        <h2>{lang === 'en' ? item.name_en : lang === 'tr' ? item.name_tr : item.name_ar}</h2>
+                        <h2>{item.name}</h2>
                         <h3>{item.price} $</h3>
                       </div>
                     </a>
