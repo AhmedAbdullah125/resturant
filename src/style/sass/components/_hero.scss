@@ -258,6 +258,8 @@
 }
 .offered-meal-overlay{
     position: absolute;
+    padding: 16px;
+    overflow: auto;
     top: 0;
     left: 0;
     width: 100%;
@@ -268,7 +270,6 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
-    padding: 10px;
     transition: opacity 0.3s ease-in-out;
     .offered-meal-title{
         color: $white;
@@ -281,6 +282,27 @@
         font-size: 16px;
         font-weight: 400;
         margin-bottom: 10px;
+    }
+    p{
+        color: $white;
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+    h6{
+        color: $white;
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        .new-price{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .old-price{
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: line-through;
+        }
     }
     .button{
         background-color: #007A4B;
